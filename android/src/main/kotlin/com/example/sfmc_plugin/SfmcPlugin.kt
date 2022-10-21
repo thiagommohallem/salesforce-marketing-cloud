@@ -154,13 +154,19 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 result.success(true)
             }
             "getSDKState" -> {
-                MarketingCloudSdk.requestSdk { sdk ->
-                    result.invoke(sdk.sdkState.toString())
-                } 
+                getSDKState() { res ->
+                    result.success(res)
+                }
             }
             else -> {
                 result.notImplemented()
             }
+        }
+    }
+
+    fun getSDKState(result: (Any?) -> Unit) {
+        MarketingCloudSdk.requestSdk { sdk ->
+            result.invoke(sdk.sdkState.toString())
         }
     }
 }
