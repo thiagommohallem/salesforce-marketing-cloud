@@ -122,6 +122,7 @@ await SfmcPlugin().setProfileAttribute("key", "value");
 await SfmcPlugin().clearProfileAttribute("key");
 ```
 
+
 ## Contributions
 
 🍺 Pull requests are welcome!
