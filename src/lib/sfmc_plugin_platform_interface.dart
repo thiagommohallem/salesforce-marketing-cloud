@@ -68,4 +68,7 @@ abstract class SfmcPluginPlatform extends PlatformInterface {
   /// To Enable/Disable Push Notification
   Future<bool?> setPushEnabled(bool? enabled) =>
       _instance.setPushEnabled(enabled);
+
+  /// Get SDK State
+  Future<String?> getSDKState() => _instance.getSDKState();
 }

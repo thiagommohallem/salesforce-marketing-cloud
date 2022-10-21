@@ -56,4 +56,8 @@ class SfmcPlugin {
   /// To Enable/Disable Push Notification
   Future<bool?> setPushEnabled(bool? enabled) async =>
       SfmcPluginPlatform.instance.setPushEnabled(enabled);
+
+  /// Get SDK State
+  Future<String?> getSDKState() async =>
+      SfmcPluginPlatform.instance.getSDKState();
 }

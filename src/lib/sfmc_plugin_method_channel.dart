@@ -101,4 +101,13 @@ class MethodChannelSfmcPlugin extends SfmcPluginPlatform {
 
     return result;
   }
+
+  @override
+  Future<String?> getSDKState() async {
+    final String? result = await methodChannel.invokeMethod(
+      'getSDKState',
+    );
+
+    return result;
+  }
 }
