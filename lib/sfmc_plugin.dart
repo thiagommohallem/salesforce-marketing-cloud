@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
 import 'sfmc_plugin_platform_interface.dart';
 
@@ -63,6 +62,6 @@ class SfmcPlugin {
       SfmcPluginPlatform.instance.getSDKState();
 
   /// Pass a RemoteMessage from firebase to SFMC Plugin
-  Future<bool?> handleMessage(RemoteMessage message) async =>
+  Future<bool?> handleMessage(Map<dynamic, dynamic> message) async =>
       SfmcPluginPlatform.instance.handleMessage(message);
 }
