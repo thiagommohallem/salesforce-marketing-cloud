@@ -163,9 +163,10 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 Log.v(LOG_TAG2, "ENTRANDO");
                 
                 val message = call.argument<Map<String, String>>("message")
-                Log.v(LOG_TAG2, message.entries.joinToString());
                 
                 if(message != null){
+                    Log.v(LOG_TAG2, message.entries.joinToString());
+
 
                     if (PushMessageManager.isMarketingCloudPush(message)) {
                         SFMCSdk.requestSdk { sdk ->
@@ -180,6 +181,8 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                         return
                     }
                 }
+                Log.v(LOG_TAG2,  "NULL MESSAGE");
+
                 result.success(false)
                 return
             }
