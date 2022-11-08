@@ -158,7 +158,8 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
             }
             "handleMessage" -> {
                 val message = call.argument<Map<String, String>>("message")
-                Log.d(message)
+                print(message)
+                Log.d("MESSAGE", message)
                 if(message != null){
 
                     if (PushMessageManager.isMarketingCloudPush(message)) {
