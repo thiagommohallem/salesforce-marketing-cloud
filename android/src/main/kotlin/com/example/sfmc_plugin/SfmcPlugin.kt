@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.NonNull
 import com.salesforce.marketingcloud.MarketingCloudSdk
 import com.salesforce.marketingcloud.sfmcsdk.SFMCSdk
+import com.salesforce.marketingcloud.messages.push.PushMessageManager
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
