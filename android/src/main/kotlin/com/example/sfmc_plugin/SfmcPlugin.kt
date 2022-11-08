@@ -11,6 +11,9 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import com.google.firebase.messaging.RemoteMessage
+import android.util.Log
+
+const val LOG_TAG = "MCSDK"
 
 class SfmcPlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var channel: MethodChannel
@@ -157,9 +160,7 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
             }
             "handleMessage" -> {
                 val message = call.argument<Map<String, String>>("message")
-                print("AAAA")
-                print(message)
-                print("BBBB")
+                Log.v(LOG_TAG, message)
                 if(message != null){
 
                     if (PushMessageManager.isMarketingCloudPush(message)) {
