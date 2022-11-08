@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -97,6 +98,15 @@ class MethodChannelSfmcPlugin extends SfmcPluginPlatform {
   Future<bool?> setPushEnabled(bool? enabled) async {
     final bool? result = await methodChannel.invokeMethod('setPushEnabled', {
       "isEnabled": enabled ?? true,
+    });
+
+    return result;
+  }
+
+  @override
+  Future<String?> handleMessage(RemoteMessage message) async {
+    final String? result = await methodChannel.invokeMethod('handleMessage', {
+      "message": message,
     });
 
     return result;

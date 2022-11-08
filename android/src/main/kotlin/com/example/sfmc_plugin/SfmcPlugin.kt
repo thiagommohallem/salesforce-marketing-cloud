@@ -9,6 +9,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import com.google.firebase.messaging.RemoteMessage
 
 class SfmcPlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var channel: MethodChannel
@@ -152,7 +153,11 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                     MarketingCloudSdk.requestSdk { sdk -> sdk.pushMessageManager.disablePush() }
                 }
                 result.success(true)
-            }
+            },
+            "handleMessage" -> {
+                val message: RemoteMessage = call.argument<RemoteMessage>("message") as RemoteMessage
+                SFMCSdk.requestSdk { sdk -> sdk.pushMessageManager.handleMessage(message)}
+            },
             "getSDKState" -> {
                 getSDKState() { res ->
                     result.success(res)
