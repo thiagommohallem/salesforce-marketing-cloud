@@ -162,10 +162,10 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
             "handleMessage" -> {
                 Log.v(LOG_TAG2, "ENTRANDO");
                 
-                val message = call.argument<MutableMap<String, String>>("message") as RemoteMessage
+                val message = call.argument<MutableMap<String, String>>("message")
                 
                 if(message != null){
-                    Log.v(LOG_TAG2, message.getData().entries.joinToString());
+                    Log.v(LOG_TAG2, message.entries.joinToString());
 
                     SFMCSdk.requestSdk { sdk ->
                         sdk.mp {
