@@ -165,7 +165,7 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 val message = call.argument<MutableMap<String!, String!>>("message")
                 
                 if(message != null){
-                    Log.v(LOG_TAG2, message.getData().entries.joinToString());
+                    Log.v(LOG_TAG2, message.entries.joinToString());
 
                     SFMCSdk.requestSdk { sdk ->
                         sdk.mp {
