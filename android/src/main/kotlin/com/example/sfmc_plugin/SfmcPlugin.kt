@@ -155,7 +155,7 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 result.success(true)
             }
             "handleMessage" -> {
-                val message: RemoteMessage = call.argument<RemoteMessage>("message") as RemoteMessage
+                val message: Any = call.argument<Any>("message")
                 SFMCSdk.requestSdk { sdk ->
                     sdk.mp {
                         it.pushMessageManager.handleMessage(message)
