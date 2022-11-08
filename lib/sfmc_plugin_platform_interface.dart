@@ -75,6 +75,6 @@ abstract class SfmcPluginPlatform extends PlatformInterface {
 
   /// Pass a RemoteMessage from firebase to SFMC Plugin
   /// @param message - Firebase RemoteMessage
-  Future<String?> handleMessage(RemoteMessage message) =>
+  Future<bool?> handleMessage(RemoteMessage message) =>
       _instance.handleMessage(message);
 }

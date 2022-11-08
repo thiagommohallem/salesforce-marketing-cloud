@@ -104,8 +104,8 @@ class MethodChannelSfmcPlugin extends SfmcPluginPlatform {
   }
 
   @override
-  Future<String?> handleMessage(RemoteMessage message) async {
-    final String? result = await methodChannel.invokeMethod('handleMessage', {
+  Future<bool?> handleMessage(RemoteMessage message) async {
+    final bool? result = await methodChannel.invokeMethod('handleMessage', {
       "message": message,
     });
 

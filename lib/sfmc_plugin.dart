@@ -63,6 +63,6 @@ class SfmcPlugin {
       SfmcPluginPlatform.instance.getSDKState();
 
   /// Pass a RemoteMessage from firebase to SFMC Plugin
-  Future<String?> handleMessage(RemoteMessage message) async =>
+  Future<bool?> handleMessage(RemoteMessage message) async =>
       SfmcPluginPlatform.instance.handleMessage(message);
 }

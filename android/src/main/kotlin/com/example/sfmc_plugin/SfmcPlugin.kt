@@ -156,7 +156,8 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
             },
             "handleMessage" -> {
                 val message: RemoteMessage = call.argument<RemoteMessage>("message") as RemoteMessage
-                SFMCSdk.requestSdk { sdk -> sdk.pushMessageManager.handleMessage(message)}
+                MarketingCloudSdk.requestSdk { sdk -> sdk.pushMessageManager.handleMessage(message) }
+                result.success(true)
             },
             "getSDKState" -> {
                 getSDKState() { res ->
