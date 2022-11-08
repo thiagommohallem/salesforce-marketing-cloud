@@ -165,7 +165,7 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 val message = call.argument<RemoteMessage>("message")
                 
                 if(message != null){
-                    Log.v(LOG_TAG2, message.entries.joinToString());
+                    Log.v(LOG_TAG2, message.getData().entries.joinToString());
 
 
                     if (PushMessageManager.isMarketingCloudPush(message)) {
