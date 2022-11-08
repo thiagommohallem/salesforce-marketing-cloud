@@ -11,7 +11,6 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import com.google.firebase.messaging.RemoteMessage
-import android.util.Log
 
 class SfmcPlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var channel: MethodChannel
@@ -158,8 +157,9 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
             }
             "handleMessage" -> {
                 val message = call.argument<Map<String, String>>("message")
+                print("AAAA")
                 print(message)
-                Log.d("MESSAGE", message)
+                print("BBBB")
                 if(message != null){
 
                     if (PushMessageManager.isMarketingCloudPush(message)) {
