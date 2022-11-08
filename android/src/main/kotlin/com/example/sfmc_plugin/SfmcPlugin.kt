@@ -14,7 +14,7 @@ import com.google.firebase.messaging.RemoteMessage
 import android.util.Log
 import org.json.JSONObject
 
-const val LOG_TAG = "MCSDK"
+const val LOG_TAG2 = "MCSDK"
 
 class SfmcPlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var channel: MethodChannel
@@ -160,10 +160,10 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 result.success(true)
             }
             "handleMessage" -> {
-                Log.v(LOG_TAG, "ENTRANDO");
+                Log.v(LOG_TAG2, "ENTRANDO");
                 
                 val message = call.argument<Map<String, String>>("message")
-                Log.v(LOG_TAG, message.entries.joinToString());
+                Log.v(LOG_TAG2, message.entries.joinToString());
                 
                 if(message != null){
 
