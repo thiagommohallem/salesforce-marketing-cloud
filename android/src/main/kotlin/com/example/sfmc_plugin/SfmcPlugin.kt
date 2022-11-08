@@ -166,11 +166,14 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                             }
                         }
                         result.success(true)
+                        return
                     } else {
                         result.success(false)
+                        return
                     }
                 }
                 result.success(false)
+                return
             }
             "getSDKState" -> {
                 getSDKState() { res ->
