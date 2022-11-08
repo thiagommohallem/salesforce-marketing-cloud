@@ -155,10 +155,10 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 result.success(true)
             }
             "handleMessage" -> {
-                val message: Map<String!, String!> = call.argument<Map<String!, String!>>("message")
+                val message: Map<String, String> = call.argument<Map<String, String>>("message")
                 SFMCSdk.requestSdk { sdk ->
                     sdk.mp {
-                        it.pushMessageManager.handleMessage(message)
+                        it.pushMessageManager.handleMessage(message!)
                     }
                 }
                 result.success(true)
