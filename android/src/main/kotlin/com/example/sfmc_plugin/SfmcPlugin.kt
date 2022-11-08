@@ -157,16 +157,20 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
             }
             "handleMessage" -> {
                 val message = call.argument<Map<String!, String!>>("message")
-                if (PushMessageManager.isMarketingCloudPush(message)) {
-                    SFMCSdk.requestSdk { sdk ->
-                        sdk.mp {
-                        it.pushMessageManager.handleMessage(message)
+                if(message != null){
+
+                    if (PushMessageManager.isMarketingCloudPush(message)) {
+                        SFMCSdk.requestSdk { sdk ->
+                            sdk.mp {
+                            it.pushMessageManager.handleMessage(message)
+                            }
                         }
+                        result.success(true)
+                    } else {
+                        result.success(false)
                     }
-                } else {
-                    result.success(false)
                 }
-                result.success(true)
+                result.success(false)
             }
             "getSDKState" -> {
                 getSDKState() { res ->
