@@ -162,24 +162,19 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
             "handleMessage" -> {
                 Log.v(LOG_TAG2, "ENTRANDO");
                 
-                val message = call.argument<RemoteMessage>("message")
+                val message = call.argument<MutableMap<String!, String!>>("message")
                 
                 if(message != null){
                     Log.v(LOG_TAG2, message.getData().entries.joinToString());
 
-
-                    if (PushMessageManager.isMarketingCloudPush(message)) {
-                        SFMCSdk.requestSdk { sdk ->
-                            sdk.mp {
-                            it.pushMessageManager.handleMessage(message)
-                            }
+                    SFMCSdk.requestSdk { sdk ->
+                        sdk.mp {
+                        it.pushMessageManager.handleMessage(message)
                         }
-                        result.success(true)
-                        return
-                    } else {
-                        result.success(false)
-                        return
                     }
+                    result.success(true)
+                    return
+
                 }
                 Log.v(LOG_TAG2,  "NULL MESSAGE");
 
