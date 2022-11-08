@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:flutter/services.dart';
 
@@ -74,6 +75,6 @@ abstract class SfmcPluginPlatform extends PlatformInterface {
 
   /// Pass a RemoteMessage from firebase to SFMC Plugin
   /// @param message - Firebase RemoteMessage
-  Future<bool?> handleMessage(Map<dynamic, dynamic> message) =>
+  Future<bool?> handleMessage(RemoteMessage message) =>
       _instance.handleMessage(message);
 }
