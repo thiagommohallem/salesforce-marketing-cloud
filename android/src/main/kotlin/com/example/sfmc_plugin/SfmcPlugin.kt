@@ -160,8 +160,10 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 result.success(true)
             }
             "handleMessage" -> {
+                Log.v(LOG_TAG, "ENTRANDO");
+                
                 val message = call.argument<Map<String, String>>("message")
-                Log.v(LOG_TAG, JSONObject(message).toString())
+                Log.v(LOG_TAG, message.entries.joinToString());
                 
                 if(message != null){
 
