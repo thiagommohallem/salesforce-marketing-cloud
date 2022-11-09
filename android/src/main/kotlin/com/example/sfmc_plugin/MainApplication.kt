@@ -28,7 +28,7 @@ class MainApplication : BaseApplication() {
                         NotificationManager.createDefaultNotificationChannel(context),
                         R.drawable.ic_notification
                     )
-                    val url = notificationMessage;
+                    val url = notificationMessage.url;
                     Log.v("URL", notificationMessage.alert);
                     if(url != null){
                         Log.v("URL", url);
