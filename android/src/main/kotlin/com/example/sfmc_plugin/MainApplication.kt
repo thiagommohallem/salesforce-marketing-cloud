@@ -45,35 +45,3 @@ class MainApplication : BaseApplication() {
                 )
         }
 }
-
-setNotificationCustomizationOptions(
-      NotificationCustomizationOptions.create(R.drawable.ic_notification_icon,
-        NotificationManager.NotificationLaunchIntentProvider { context, notificationMessage ->
-          val requestCode = Random().nextInt()
-          val url = notificationMessage.url
-          when {
-            url.isNullOrEmpty() ->
-              PendingIntent.getActivity(
-                context,
-                requestCode,
-                Intent(context, MainActivity::class.java),
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-              )
-            else ->
-              PendingIntent.getActivity(
-                context,
-                requestCode,
-                Intent(Intent.ACTION_VIEW, Uri.parse(url)),
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-              )
-          }
-        },
-        NotificationManager.NotificationChannelIdProvider { context, notificationMessage ->
-          if (TextUtils.isEmpty(notificationMessage.url)) {
-            NotificationManager.createDefaultNotificationChannel(context)
-          } else {
-            "UrlNotification"
-          }
-        }
-      )
-    )
