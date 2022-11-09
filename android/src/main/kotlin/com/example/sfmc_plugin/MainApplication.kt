@@ -25,14 +25,7 @@ class MainApplication : BaseApplication() {
                     val requestCode = Random().nextInt()
                     val url = notificationMessage.url
                     when {
-                        url.isNullOrEmpty() ->
-                            PendingIntent.getActivity(
-                                context,
-                                requestCode,
-                                Intent(context, MainApplication::class.java),
-                                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-                        )
-                        else ->
+                        url.isNotEmpty() ->
                             PendingIntent.getActivity(
                                 context,
                                 requestCode,
