@@ -18,30 +18,31 @@ class MainApplication : BaseApplication() {
             setMarketingCloudServerUrl(BuildConfig.MC_SERVER_URL)
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
-            setNotificationCustomizationOptions(  
-                    NotificationCustomizationOptions.create(R.drawable.ic_notification,
-                    NotificationManager.NotificationLaunchIntentProvider 
-                    { context, notificationMessage ->
-                        val requestCode = Random().nextInt()
-                        val url = notificationMessage.url
-                        when {
-                            url.isNullOrEmpty() ->
-                            PendingIntent.getActivity(
-                                context,
-                                requestCode,
-                                Intent(context, MainActivity.class),
-                                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-                            )
-                            else ->
-                            PendingIntent.getActivity(
-                                context,
-                                requestCode,
-                                Intent(Intent.ACTION_VIEW, Uri.parse(url)),
-                                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-                            )
-                        }
+            setNotificationCustomizationOptions(
+                NotificationCustomizationOptions.create(R.drawable.ic_notification,
+                    NotificationManager.NotificationLaunchIntentProvider { context, notificationMessage ->
+                    val requestCode = Random().nextInt()
+                    val url = notificationMessage.url
+                    when {
+                        url.isNullOrEmpty() ->
+                        PendingIntent.getActivity(
+                            context,
+                            requestCode,
+                            Intent(context, MainActivity.class),
+                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                        )
+                        else ->
+                        PendingIntent.getActivity(
+                            context,
+                            requestCode,
+                            Intent(Intent.ACTION_VIEW, Uri.parse(url)),
+                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                        )
                     }
-                    )  
+                    }
                 )
+            )
         }
 }
+
+
