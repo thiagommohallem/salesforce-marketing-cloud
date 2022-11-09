@@ -27,7 +27,7 @@ class MainApplication : BaseApplication() {
                         R.drawable.ic_notification
                     )
                     val url = notificationMessage.url
-                    if(url != null && url != ''){
+                    if(url != null){
                         builder.setContentIntent(
                             PendingIntent.getActivity(
                                 context,
