@@ -3,6 +3,7 @@ package com.example.sfmc_plugin
 import android.app.PendingIntent
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.text.TextUtils
 import com.salesforce.marketingcloud.MarketingCloudConfig
 import com.salesforce.marketingcloud.notifications.NotificationCustomizationOptions
