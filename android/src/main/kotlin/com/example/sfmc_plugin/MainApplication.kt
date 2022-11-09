@@ -19,21 +19,27 @@ class MainApplication : BaseApplication() {
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
             setNotificationCustomizationOptions(
-                NotificationCustomizationOptions.create(R.drawable.ic_notification,
-                    NotificationManager.NotificationLaunchIntentProvider { context, notificationMessage ->
-                        val requestCode = Random().nextInt()
-                        val url = notificationMessage.url
-                        if(url != null){
+                NotificationCustomizationOptions.create { context, notificationMessage ->
+                    val builder = NotificationManager.getDefaultNotificationBuilder(
+                        context,
+                        notificationMessage,
+                        NotificationManager.createDefaultNotificationChannel(context),
+                        R.drawable.ic_notification
+                    )
+                    val url = notificationMessage.url
+                    if(url != null){
 
+                        builder.setContentIntent(
                             PendingIntent.getActivity(
-                                    context,
-                                    requestCode,
-                                    Intent(Intent.ACTION_VIEW, Uri.parse(url)),
-                                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-                            )
-                        }
+                                context,
+                                Random().nextInt(),
+                                Intent(Intent.ACTION_VIEW, Uri.parse(notificationMessage.url)),
+                                PendingIntent.FLAG_IMMUTABLE
+                            ),
+                        )
                     }
-                )
+                    builder.setAutoCancel(true)
+                }
             )
         }
 }
