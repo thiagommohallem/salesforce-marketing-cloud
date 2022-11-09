@@ -20,7 +20,7 @@ class MainApplication : BaseApplication() {
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
             setNotificationCustomizationOptions(
-                NotificationCustomizationOptions.create(R.drawable.ic_notification_icon,
+                NotificationCustomizationOptions.create(R.drawable.ic_notification,
                     NotificationManager.NotificationLaunchIntentProvider { context, notificationMessage ->
                     val requestCode = Random().nextInt()
                     val url = notificationMessage.url
