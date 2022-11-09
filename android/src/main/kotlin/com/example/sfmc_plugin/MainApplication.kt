@@ -19,23 +19,36 @@ class MainApplication : BaseApplication() {
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
             setNotificationCustomizationOptions(
-                NotificationCustomizationOptions.create { context, notificationMessage ->
-                    val builder = NotificationManager.getDefaultNotificationBuilder(
-                        context,
-                        notificationMessage,
-                        NotificationManager.createDefaultNotificationChannel(context),
-                        R.drawable.ic_notification
-                    )
-                    builder.setContentIntent(
-                        PendingIntent.getActivity(
-                            context,
-                            Random().nextInt(),
-                            Intent(Intent.ACTION_VIEW, Uri.parse(notificationMessage.url)),
-                            PendingIntent.FLAG_IMMUTABLE
-                        ),
-                    )
-                    builder.setAutoCancel(true)
-                }
+                NotificationCustomizationOptions.create(R.drawable.ic_notification,
+                    NotificationManager.NotificationLaunchIntentProvider { context, notificationMessage ->
+                        val requestCode = Random().nextInt()
+                        val url = notificationMessage.url
+                        when {
+                            url.isNullOrEmpty() ->
+                            PendingIntent.getActivity(
+                                context,
+                                requestCode,
+                                Intent(context, MainActivity::class.java),
+                                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                            )
+                            else ->
+                            PendingIntent.getActivity(
+                                context,
+                                requestCode,
+                                Intent(Intent.ACTION_VIEW, Uri.parse(url)),
+                                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                            )
+                        }
+                    },
+                    NotificationManager.NotificationChannelIdProvider { context, notificationMessage ->
+                        if (TextUtils.isEmpty(notificationMessage.url)) {
+                            NotificationManager.createDefaultNotificationChannel(context)
+                        } else {
+                            "UrlNotification"
+                        }
+                    }
+                )
             )
         }
 }
+
