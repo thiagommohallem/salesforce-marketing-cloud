@@ -29,7 +29,6 @@ class MainApplication : BaseApplication() {
                         R.drawable.ic_notification
                     )
                     val url = notificationMessage.url;
-                    Log.v("URL", notificationMessage);
                     Log.v("URL", notificationMessage.url);
                     if(url != null){
 
