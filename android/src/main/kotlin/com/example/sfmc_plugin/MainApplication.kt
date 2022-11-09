@@ -28,7 +28,7 @@ class MainApplication : BaseApplication() {
                     )
                     val url = notificationMessage.url
                     when {
-                        url.isNotNullOrEmpty() ->
+                        url.isNotEmpty() ->
                         builder.setContentIntent(
                             PendingIntent.getActivity(
                                 context,
