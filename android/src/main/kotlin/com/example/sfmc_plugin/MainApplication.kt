@@ -3,6 +3,7 @@ package com.example.sfmc_plugin
 import android.app.PendingIntent
 import android.content.Intent
 import android.net.Uri
+import android.text.TextUtils
 import com.salesforce.marketingcloud.MarketingCloudConfig
 import com.salesforce.marketingcloud.notifications.NotificationCustomizationOptions
 import com.salesforce.marketingcloud.notifications.NotificationManager
@@ -19,29 +20,38 @@ class MainApplication : BaseApplication() {
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
             setNotificationCustomizationOptions(
-                NotificationCustomizationOptions.create { context, notificationMessage ->
-                    val builder = NotificationManager.getDefaultNotificationBuilder(
-                        context,
-                        notificationMessage,
-                        NotificationManager.createDefaultNotificationChannel(context),
-                        R.drawable.ic_notification
-                    )
+                NotificationCustomizationOptions.create(R.drawable.ic_notification_icon,
+                    NotificationManager.NotificationLaunchIntentProvider { context, notificationMessage ->
+                    val requestCode = Random().nextInt()
                     val url = notificationMessage.url
-                    if(url != null){
-
-                        builder.setContentIntent(
+                    when {
+                        url.isNullOrEmpty() ->
                             PendingIntent.getActivity(
                                 context,
-                                Random().nextInt(),
-                                Intent(Intent.ACTION_VIEW, Uri.parse(notificationMessage.url)),
-                                PendingIntent.FLAG_IMMUTABLE
-                            ),
+                                requestCode,
+                                Intent(context, MainApplication::class.java),
+                                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                        )
+                        else ->
+                            PendingIntent.getActivity(
+                                context,
+                                requestCode,
+                                Intent(Intent.ACTION_VIEW, Uri.parse(url)),
+                                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                         )
                     }
-                    builder.setAutoCancel(true)
-                }
-            )
+                    },
+                    NotificationManager.NotificationChannelIdProvider { context, notificationMessage ->
+                        if (TextUtils.isEmpty(notificationMessage.url)) {
+                            NotificationManager.createDefaultNotificationChannel(context)
+                        } else {
+                            "UrlNotification"
+                        }
+                    }
+                )
+                )
         }
 }
+
 
 
