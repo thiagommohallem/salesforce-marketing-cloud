@@ -19,7 +19,7 @@ class MainApplication : BaseApplication() {
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
             setNotificationCustomizationOptions(  
-                    NotificationCustomizationOptions.create(R.drawable.ic_notification_icon)  
+                    NotificationCustomizationOptions.create(R.drawable.ic_notification)  
                 )
         }
 }
