@@ -31,7 +31,7 @@ class MainApplication : BaseApplication() {
                     val url = notificationMessage;
                     Log.v("URL", notificationMessage.alert);
                     if(url != null){
-                        Log.v("URL", notificationMessage.url
+                        Log.v("URL", notificationMessage.url);
                         builder.setContentIntent(
                             PendingIntent.getActivity(
                                 context,
