@@ -28,10 +28,10 @@ class MainApplication : BaseApplication() {
                         NotificationManager.createDefaultNotificationChannel(context),
                         R.drawable.ic_notification
                     )
-                    val url = notificationMessage.url;
-                    Log.v("URL", notificationMessage.url);
+                    val url = notificationMessage;
+                    Log.v("URL", notificationMessage.alert);
                     if(url != null){
-
+                        Log.v("URL", notificationMessage.url
                         builder.setContentIntent(
                             PendingIntent.getActivity(
                                 context,
