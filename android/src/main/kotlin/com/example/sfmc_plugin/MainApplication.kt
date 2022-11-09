@@ -18,30 +18,8 @@ class MainApplication : BaseApplication() {
             setMarketingCloudServerUrl(BuildConfig.MC_SERVER_URL)
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
-            setNotificationCustomizationOptions(
-                NotificationCustomizationOptions.create { context, notificationMessage ->
-                    val builder = NotificationManager.getDefaultNotificationBuilder(
-                        context,
-                        notificationMessage,
-                        NotificationManager.createDefaultNotificationChannel(context),
-                        R.drawable.ic_notification
-                    )
-                    val url = notificationMessage.url
-                    if(url != null){
-                        builder.setContentIntent(
-                            PendingIntent.getActivity(
-                                context,
-                                Random().nextInt(),
-                                Intent(Intent.ACTION_VIEW, Uri.parse(notificationMessage.url)),
-                                PendingIntent.FLAG_IMMUTABLE
-                            ),
-                        )
-
-                    }
-                    
-                    
-                    builder.setAutoCancel(true)
-                }
-            )
+            setNotificationCustomizationOptions(  
+                    NotificationCustomizationOptions.create(R.drawable.ic_notification_icon)  
+                )
         }
 }
