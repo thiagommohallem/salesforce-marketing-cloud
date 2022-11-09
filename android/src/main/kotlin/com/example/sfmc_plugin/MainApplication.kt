@@ -27,8 +27,7 @@ class MainApplication : BaseApplication() {
                         R.drawable.ic_notification
                     )
                     val url = notificationMessage.url
-                    when {
-                        url.isNotEmpty() ->
+                    if(url != null && url != ''){
                         builder.setContentIntent(
                             PendingIntent.getActivity(
                                 context,
@@ -37,7 +36,9 @@ class MainApplication : BaseApplication() {
                                 PendingIntent.FLAG_IMMUTABLE
                             ),
                         )
+
                     }
+                    
                     
                     builder.setAutoCancel(true)
                 }
