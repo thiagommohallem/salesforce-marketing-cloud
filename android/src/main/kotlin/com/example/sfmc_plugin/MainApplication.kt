@@ -33,14 +33,8 @@ class MainApplication : BaseApplication() {
                         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
                     
-                  },
-                  NotificationManager.NotificationChannelIdProvider { context, notificationMessage ->
-                    if (TextUtils.isEmpty(notificationMessage.url)) {
-                      NotificationManager.createDefaultNotificationChannel(context)
-                    } else {
-                      "UrlNotification"
-                    }
                   }
+
                 )
               )
             
