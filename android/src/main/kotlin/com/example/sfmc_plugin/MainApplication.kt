@@ -43,7 +43,7 @@ class MainApplication : BaseApplication() {
                             PendingIntent.getActivity(
                                 context,
                                 Random().nextInt(),
-                                Intent(Intent.ACTION_VIEW, MainApplication:class.java),
+                                Intent(context, MainActivity.class),
                                 PendingIntent.FLAG_IMMUTABLE
                             ),
                         )
