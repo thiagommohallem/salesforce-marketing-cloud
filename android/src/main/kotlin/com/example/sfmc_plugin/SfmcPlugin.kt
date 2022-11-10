@@ -10,11 +10,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import com.google.firebase.messaging.RemoteMessage
-import android.util.Log
-import org.json.JSONObject
 
-const val LOG_TAG2 = "MCSDK"
 
 class SfmcPlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var channel: MethodChannel
@@ -159,14 +155,10 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 }
                 result.success(true)
             }
-            "handleMessage" -> {
-                Log.v(LOG_TAG2, "ENTRANDO");
-                
+            "handleMessage" -> {                
                 val message = call.argument<MutableMap<String, String>>("message")
                 
                 if(message != null){
-                    Log.v(LOG_TAG2, message.entries.joinToString());
-
                     SFMCSdk.requestSdk { sdk ->
                         sdk.mp {
                         it.pushMessageManager.handleMessage(message)
@@ -176,25 +168,12 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                     return
 
                 }
-                Log.v(LOG_TAG2,  "NULL MESSAGE");
-
                 result.success(false)
                 return
-            }
-            "getSDKState" -> {
-                getSDKState() { res ->
-                    result.success(res)
-                }
             }
             else -> {
                 result.notImplemented()
             }
-        }
-    }
-
-    fun getSDKState(result: (Any?) -> Unit) {
-        MarketingCloudSdk.requestSdk { sdk ->
-            result.invoke(sdk.sdkState.toString())
         }
     }
 }

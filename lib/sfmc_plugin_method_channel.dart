@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -108,15 +107,6 @@ class MethodChannelSfmcPlugin extends SfmcPluginPlatform {
     final bool? result = await methodChannel.invokeMethod('handleMessage', {
       "message": message,
     });
-
-    return result;
-  }
-
-  @override
-  Future<String?> getSDKState() async {
-    final String? result = await methodChannel.invokeMethod(
-      'getSDKState',
-    );
 
     return result;
   }

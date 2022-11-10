@@ -69,11 +69,9 @@ abstract class SfmcPluginPlatform extends PlatformInterface {
   Future<bool?> setPushEnabled(bool? enabled) =>
       _instance.setPushEnabled(enabled);
 
-  /// Get SDK State
-  Future<String?> getSDKState() => _instance.getSDKState();
-
-  /// Pass a RemoteMessage from firebase to SFMC Plugin
-  /// @param message - Firebase RemoteMessage
+  /// Send a message to SFMC plugin, this is useful if you have multiple SDKs
+  /// Use the RemoteNotification data field if you are using FCM
+  /// @param message - Firebase RemoteMessage data
   Future<bool?> handleMessage(Map<String, dynamic> message) =>
       _instance.handleMessage(message);
 }
