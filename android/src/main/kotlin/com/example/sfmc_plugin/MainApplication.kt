@@ -21,7 +21,17 @@ class MainApplication : BaseApplication() {
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
             setNotificationCustomizationOptions(
-                NotificationCustomizationOptions.create(R.drawable.ic_notification)
+                NotificationCustomizationOptions.create(R.drawable.ic_notification),
+                NotificationManager.NotificationLaunchIntentProvider { context, notificationMessage ->
+                    val requestCode = Random().nextInt()
+                    val url = notificationMessage.url
+                    PendingIntent.getActivity(
+                            context,
+                            requestCode,
+                            Intent(Intent.ACTION_VIEW, Uri.parse(url)),
+                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                        )
+                    }, null
             )
         }
 }
