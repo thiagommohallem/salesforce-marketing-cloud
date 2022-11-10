@@ -31,7 +31,7 @@ class MainApplication : BaseApplication() {
                             Intent(Intent.ACTION_VIEW, Uri.parse(url)),
                             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                         )
-                    }, null
+                    }
             )
         }
 }
