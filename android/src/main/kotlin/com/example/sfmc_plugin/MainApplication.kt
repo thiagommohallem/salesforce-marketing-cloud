@@ -29,15 +29,25 @@ class MainApplication : BaseApplication() {
                         R.drawable.ic_notification
                     )
                     val url = notificationMessage.url;
-                    if(url != null){
-                        builder.setContentIntent(
-                            PendingIntent.getActivity(
-                                context,
-                                Random().nextInt(),
-                                Intent(Intent.ACTION_VIEW, Uri.parse(url)),
-                                PendingIntent.FLAG_IMMUTABLE
-                            ),
-                        )
+                    when {
+                        url.isNullOrEmpty() ->
+                            builder.setContentIntent(
+                                    PendingIntent.getActivity(
+                                    context,
+                                    requestCode,
+                                    Intent(context, MainActivity.class),
+                                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                                )
+                            )
+                        else ->
+                            builder.setContentIntent(
+                                    PendingIntent.getActivity(
+                                    context,
+                                    requestCode,
+                                    Intent(Intent.ACTION_VIEW, Uri.parse(url)),
+                                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                                )
+                            )
                     }
                     builder.setAutoCancel(true)
                 }
