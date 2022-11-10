@@ -20,6 +20,7 @@ class MainApplication : BaseApplication() {
             setMarketingCloudServerUrl(BuildConfig.MC_SERVER_URL)
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
+            setAnalyticsEnabled(true)
             setNotificationCustomizationOptions(
                 NotificationCustomizationOptions.create(R.drawable.ic_notification,
                   NotificationManager.NotificationLaunchIntentProvider { context, notificationMessage ->
