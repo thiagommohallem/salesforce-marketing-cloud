@@ -122,6 +122,18 @@ await SfmcPlugin().setProfileAttribute("key", "value");
 await SfmcPlugin().clearProfileAttribute("key");
 ```
 
+### Mutiple SDK's (Android only)
+
+If you use another SDK such as Firebase Cloud Messaging [Reference](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/trouble-shooting/multiple-push-sdks.html) to handle Push Notifications, you need to send the notification to the SFMC sdk:
+
+```dart
+FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (messageIsFromMarketingCloud) {
+        SfmcPlugin().handleMessage(message.data);
+      }
+  }
+```
+
 ## Contributions
 
 🍺 Pull requests are welcome!

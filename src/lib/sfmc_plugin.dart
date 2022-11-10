@@ -56,4 +56,10 @@ class SfmcPlugin {
   /// To Enable/Disable Push Notification
   Future<bool?> setPushEnabled(bool? enabled) async =>
       SfmcPluginPlatform.instance.setPushEnabled(enabled);
+
+  /// Send a message to SFMC plugin, this is useful if you have multiple SDKs
+  /// Use the RemoteNotification data field if you are using FCM
+  /// @param message - Firebase RemoteMessage data
+  Future<bool?> handleMessage(Map<String, dynamic> message) async =>
+      SfmcPluginPlatform.instance.handleMessage(message);
 }

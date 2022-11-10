@@ -26,14 +26,17 @@ class MainApplication : BaseApplication() {
                         NotificationManager.createDefaultNotificationChannel(context),
                         R.drawable.ic_notification
                     )
-                    builder.setContentIntent(
-                        PendingIntent.getActivity(
-                            context,
-                            Random().nextInt(),
-                            Intent(Intent.ACTION_VIEW, Uri.parse(notificationMessage.url)),
-                            PendingIntent.FLAG_IMMUTABLE
-                        ),
-                    )
+                    val url = notificationMessage.url;
+                    if(url != null){
+                        builder.setContentIntent(
+                            PendingIntent.getActivity(
+                                context,
+                                Random().nextInt(),
+                                Intent(Intent.ACTION_VIEW, Uri.parse(url)),
+                                PendingIntent.FLAG_IMMUTABLE
+                            ),
+                        )
+                    }
                     builder.setAutoCancel(true)
                 }
             )

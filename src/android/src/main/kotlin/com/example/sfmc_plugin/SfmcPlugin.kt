@@ -153,6 +153,22 @@ class SfmcPlugin : FlutterPlugin, MethodCallHandler {
                 }
                 result.success(true)
             }
+            "handleMessage" -> {                
+                val message = call.argument<MutableMap<String, String>>("message")
+                
+                if(message != null){
+                    SFMCSdk.requestSdk { sdk ->
+                        sdk.mp {
+                        it.pushMessageManager.handleMessage(message)
+                        }
+                    }
+                    result.success(true)
+                    return
+
+                }
+                result.success(false)
+                return
+            }
             else -> {
                 result.notImplemented()
             }

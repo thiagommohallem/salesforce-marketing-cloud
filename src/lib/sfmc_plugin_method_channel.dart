@@ -101,4 +101,13 @@ class MethodChannelSfmcPlugin extends SfmcPluginPlatform {
 
     return result;
   }
+
+  @override
+  Future<bool?> handleMessage(Map<String, dynamic> message) async {
+    final bool? result = await methodChannel.invokeMethod('handleMessage', {
+      "message": message,
+    });
+
+    return result;
+  }
 }
