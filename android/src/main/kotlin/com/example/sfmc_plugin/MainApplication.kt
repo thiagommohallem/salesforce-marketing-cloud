@@ -38,15 +38,6 @@ class MainApplication : BaseApplication() {
                                 PendingIntent.FLAG_IMMUTABLE
                             ),
                         )
-                    } else{
-                        builder.setContentIntent(
-                            PendingIntent.getActivity(
-                                context,
-                                Random().nextInt(),
-                                Intent(context, MainActivity.class),
-                                PendingIntent.FLAG_IMMUTABLE
-                            ),
-                        )
                     }
                     builder.setAutoCancel(true)
                 }
