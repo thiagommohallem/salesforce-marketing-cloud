@@ -21,24 +21,7 @@ class MainApplication : BaseApplication() {
             setDelayRegistrationUntilContactKeyIsSet(true)
             setUrlHandler(this@MainApplication)
             setNotificationCustomizationOptions(
-                NotificationCustomizationOptions.create { context, notificationMessage ->
-                    val builder = NotificationManager.getDefaultNotificationBuilder(
-                        context,
-                        notificationMessage,
-                        NotificationManager.createDefaultNotificationChannel(context),
-                        R.drawable.ic_notification
-                    )
-                    val url = notificationMessage.url;
-                    builder.setContentIntent(
-                            PendingIntent.getActivity(
-                                context,
-                                Random().nextInt(),
-                                Intent(context, FlutterActivity::class.java),
-                                PendingIntent.FLAG_IMMUTABLE
-                            ),
-                        )
-                    builder.setAutoCancel(true)
-                }
+                NotificationCustomizationOptions.create(R.drawable.ic_notification)
             )
         }
 }
