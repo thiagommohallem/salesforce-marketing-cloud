@@ -33,7 +33,7 @@ class MainApplication : BaseApplication() {
                         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
                     
-                  }
+                  }, null
 
                 )
               )
