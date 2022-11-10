@@ -28,6 +28,7 @@ class MainApplication : BaseApplication() {
                         NotificationManager.createDefaultNotificationChannel(context),
                         R.drawable.ic_notification
                     )
+                    val requestCode = Random().nextInt()
                     val url = notificationMessage.url;
                     when {
                         url.isNullOrEmpty() ->
