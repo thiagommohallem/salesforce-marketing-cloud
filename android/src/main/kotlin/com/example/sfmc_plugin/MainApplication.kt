@@ -33,7 +33,7 @@ class MainApplication : BaseApplication() {
                             PendingIntent.getActivity(
                                 context,
                                 Random().nextInt(),
-                                Intent(context, BaseApplication::class.java),
+                                Intent(context, FlutterActivity.class),
                                 PendingIntent.FLAG_IMMUTABLE
                             ),
                         )
