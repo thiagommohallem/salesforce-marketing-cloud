@@ -30,7 +30,7 @@ class MainApplication : BaseApplication() {
                           PendingIntent.getActivity(
                             context,
                             requestCode,
-                            Intent(context,this@MainApplication),
+                            Intent(context, Uri.parse("toro://meus-investimentos")),
                             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                           )
                         else ->
