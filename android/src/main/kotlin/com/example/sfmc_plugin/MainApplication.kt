@@ -29,14 +29,12 @@ class MainApplication : BaseApplication() {
                         R.drawable.ic_notification
                     )
                     val url = notificationMessage.url;
-                    Log.v("URL", notificationMessage.alert);
                     if(url != null){
-                        Log.v("URL", url);
                         builder.setContentIntent(
                             PendingIntent.getActivity(
                                 context,
                                 Random().nextInt(),
-                                Intent(Intent.ACTION_VIEW, Uri.parse(notificationMessage.url)),
+                                Intent(Intent.ACTION_VIEW, Uri.parse(url)),
                                 PendingIntent.FLAG_IMMUTABLE
                             ),
                         )
